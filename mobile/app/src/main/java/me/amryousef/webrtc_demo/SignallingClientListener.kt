@@ -8,4 +8,7 @@ interface SignallingClientListener {
     fun onOfferReceived(description: SessionDescription)
     fun onAnswerReceived(description: SessionDescription)
     fun onIceCandidateReceived(iceCandidate: IceCandidate)
+    fun onVideoInfoReceived(videoInfo: SignallingClient.VideoInfo)
+    fun onPositionReceived(position: SignallingClient.Position)
+    fun onPlayEnd()
 }

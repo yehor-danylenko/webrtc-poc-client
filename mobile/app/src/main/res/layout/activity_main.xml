@@ -7,22 +7,44 @@
     tools:context=".MainActivity">
 
     <org.webrtc.SurfaceViewRenderer
-        android:id="@+id/local_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/remote_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <org.webrtc.SurfaceViewRenderer
         android:id="@+id/remote_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/local_view" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/half_screen_guideline"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/videoDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/remote_view"
+        app:layout_constraintEnd_toEndOf="@id/remote_view"
+    />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:scaleY="1.5"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/videoDuration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/half_screen_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"
+        />
 
     <ProgressBar
         android:id="@+id/remote_view_loading"
@@ -34,14 +56,48 @@
         app:layout_constraintStart_toStartOf="@id/remote_view"
         app:layout_constraintTop_toTopOf="@id/remote_view" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/call_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/play_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_margin="20dp"
         android:clickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_call" />
+        app:layout_constraintTop_toBottomOf="@id/half_screen_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/pause_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="20dp"
+        android:clickable="false"
+        app:layout_constraintTop_toBottomOf="@id/half_screen_guideline"
+        app:layout_constraintStart_toEndOf="@id/play_button"
+        app:srcCompat="@android:drawable/ic_media_pause" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/switch_button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="20dp"
+        android:clickable="false"
+        app:layout_constraintTop_toBottomOf="@id/half_screen_guideline"
+        app:layout_constraintStart_toEndOf="@id/pause_button"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/throttle_time_ms"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/play_button"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:hint="throttle, ms"
+        android:textSize="22sp"
+        android:inputType="number"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
